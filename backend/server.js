@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(userRouter);
 // use requireAuth here to protect routes of remaining application 
 app.use(requireAuth);
-app.use(test);
+app.use(test); //without valid token /test route will not be accessible
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
