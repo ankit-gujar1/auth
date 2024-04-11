@@ -13,8 +13,10 @@ const test=require('./controllers/test');
 app.use(cors());
 app.use(express.json());
 
+//change MONGO_URI and remaining .env stuff
+
 app.use(userRouter);
-// use requireAuth here to protect routes of remaining application 
+//use requireAuth here to protect routes of remaining application 
 app.use(requireAuth);
 app.use(test); //without valid token /test route will not be accessible
 
