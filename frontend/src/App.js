@@ -1,12 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
+  const {user}=useAuthContext();
+
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(!user){
+      navigate('/login');
+    }
+  },[user])
+
   return (
     <div>
-      <h1>hii</h1>
-      <Link to={'/signup'}>Signup</Link>
+      <Navbar/>
+      {user && <h1>Sup {user.userName}</h1>}
     </div>
   );
 }
