@@ -11,6 +11,7 @@ function App() {
   useEffect(()=>{
     if(!user){
       navigate('/login');
+      return;
     }
   },[user])
 
