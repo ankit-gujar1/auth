@@ -11,7 +11,7 @@ function App() {
   useEffect(()=>{
     if(!user){
       navigate('/login');
-      return;
+      return; //its imp to return if user is not found its not enough to just navigate to /login
     }
   },[user])
 
