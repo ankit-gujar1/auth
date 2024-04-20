@@ -6,6 +6,9 @@ import { Navbar } from "./Navbar";
 
 const Signup=()=>{
 
+    // const url="https://reminder-3jth.onrender.com/";
+    const url="http://localhost:8080/";
+
     const [userName,setUserName]=useState();
     const [password,setPassword]=useState();
 
@@ -18,13 +21,14 @@ const Signup=()=>{
     useEffect(()=>{
         if(user){
             navigate('/');
+            return;
         }
     },[user])
 
     function signupUser(e){
         e.preventDefault();
 
-        axios.post('http://localhost:8080/signup',{userName,password})
+        axios.post(url+'signup',{userName,password})
         .then((r)=>{
             localStorage.setItem('user',JSON.stringify(r.data));
             dispatch({type:'LOGIN',payload:r.data});
@@ -38,22 +42,22 @@ const Signup=()=>{
     return(
         <div>
             <Navbar/>
-            <div className="row justify-content-center">
-                <div className="col-4">
+            <div className="row justify-content-center m-5">
+                <div className="col-md-6 shadow pb-4 bg-body rounded">
                     <h1 className="text-center my-3">Signup User</h1>
                     <form onSubmit={signupUser}>
                         <div className="mb-3">
-                            <label className="form-label">Enter Username</label>
-                            <input type="text" className="form-control" onChange={(e) => setUserName(e.target.value)} />
+                            {/* <label className="form-label">Enter Username</label> */}
+                            <input type="text" className="form-control" onChange={(e) => setUserName(e.target.value)} placeholder="Enter Username"/>
                         </div>
 
                         <div className="mb-3">
-                            <label className="form-label">Enter Password</label>
-                            <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} />
+                            {/* <label className="form-label">Enter Password</label> */}
+                            <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password"/>
                         </div>
 
                         <div className="text-center">
-                            <button type="submit" className="btn btn-primary">Signup</button>
+                            <button type="submit" className="btn btn-primary px-5">Signup</button>
                         </div>
 
                         <div className="text-center my-2">

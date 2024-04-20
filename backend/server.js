@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const userRouter=require('./routes/userRoutes');
-const requireAuth=require('./middlewares/requireAuth');
-const test=require('./controllers/test');
+const adminRouter=require('./routes/adminRoutes');
+const testRouter=require('./routes/testRoutes');
 
 app.use(cors());
 app.use(express.json());
@@ -16,9 +16,8 @@ app.use(express.json());
 //change MONGO_URI and remaining .env stuff
 
 app.use(userRouter);
-//use requireAuth here to protect routes of remaining application 
-app.use(requireAuth);
-app.use(test); //without valid token /test route will not be accessible
+app.use(adminRouter);
+app.use(testRouter);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
