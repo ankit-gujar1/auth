@@ -29,7 +29,7 @@ userSchema.statics.signup=async function(userName,password){
 
     const uName=userName.toLowerCase();
 
-    const u=await this.findOne({uName});
+    const u=await this.findOne({userName:uName});
 
     // if(u) throw Error("Username already exist");
 
